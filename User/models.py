@@ -1,4 +1,19 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    click_couter = models.IntegerField(default=0)
+    connected_time = models.IntegerField(default=0)
+
+    def click(self):
+        self.click = self.click+1
+
+    def click(self, time):
+        self.onnected_time = self.onnected_time+time
+
+
+"""
+from django.db import models
 
 # Create your models here.
 
@@ -14,5 +29,4 @@ class User(models.Model):
 
     def __str__(self):
         return '{0}{1}'.format(self.first_name, self.last_name)
-"""
 """

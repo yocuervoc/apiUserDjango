@@ -10,6 +10,8 @@ class UserSerializer(serializers.ModelSerializer):
             'last_name',
             'username',
             'email',
+            'click_couter',
+            'connected_time',
             'password',
         )
 """
@@ -23,11 +25,13 @@ class UserSerializer(serializers.Serializer):
     password = serializers.CharField()
     
 
-    def create(selft, data):
+    def create(self, data):
         instance = User()
         instance.first_name = data.get('first_name')
         instance.last_name = data.get('last_name')
         instance.email = data.get('email')
+        instance.username = data.get('usename')
+        instace.click_couter = data.get('click_couter')
         instance.set_password(data.get('password'))
         instance.save()
         return instance
