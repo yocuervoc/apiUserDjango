@@ -14,6 +14,24 @@ class UserSerializer(serializers.ModelSerializer):
             'connected_time',
             'password',
         )
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, data):
+        print("_______________________________________--")
+        print("pasa")
+        print("_______________________________________--")
+        instance = User()
+        instance.first_name = data.get('first_name')
+        instance.last_name = data.get('last_name')
+        instance.email = data.get('email')
+        instance.username = data.get('username')
+        instance.click_couter = data.get('click_couter')
+        instance.set_password(data.get('password'))
+        instance.save()
+        return instance
+
+        #user.set_password(validated_data['password'])
+
 """
 from rest_framework import serializers
 from django.contrib.auth.models import User
